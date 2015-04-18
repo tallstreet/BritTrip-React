@@ -12,5 +12,16 @@ module.exports = {
 
     dispatch(key, ApiConstants.PENDING, params)
     fetch(url).then(handleResponse(key, params))
+  },
+
+  getLikes() {
+    var url = `https://graph.facebook.com/v2.3/${userId}/likes?access_token=${token}` +
+              '&fields=category&format=json';
+    var key = UserConstants.FACEBOOK_LIKES;
+    var params = {userId: userId, token: token};
+
+    dispatch(key, ApiConstants.PENDING, params)
+    fetch(url).then(handleResponse(key, params))
+
   }
 }

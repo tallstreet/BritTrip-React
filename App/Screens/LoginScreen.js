@@ -44,25 +44,27 @@ var LoginScreen = React.createClass({
 
   render() {
     return (
-      <View style={styles.container}>
+      <Image style={styles.image} source={{uri: 'https://farm5.staticflickr.com/4037/4436811900_bb971be9c5_b.jpg'}}>
 
-        <View style={styles.loginContainer}>
-          <TouchableOpacity onPress={this.login}>
-              <Text style={styles.buttonText}>
-                Sign in with Facebook
+        <View style={styles.background}>
+          <View style={styles.loginContainer}>
+            <TouchableOpacity onPress={this.login}>
+                <Text style={styles.buttonText}>
+                  Sign in with Facebook
+                </Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.footer}>
+            <TouchableOpacity onPress={this.openModal} style={styles.aboutButton}>
+              <Text style={styles.aboutButtonText}>
+                About this project
               </Text>
-          </TouchableOpacity>
-        </View>
+            </TouchableOpacity>
+          </View>
 
-        <View style={styles.footer}>
-          <TouchableOpacity onPress={this.openModal} style={styles.aboutButton}>
-            <Text style={styles.aboutButtonText}>
-              About this project
-            </Text>
-          </TouchableOpacity>
         </View>
-
-      </View>
+      </Image>
     );
   },
 });

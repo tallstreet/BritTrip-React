@@ -40,6 +40,7 @@ module.exports = StyleSheet.create({
   },
   loginContainer: {
     backgroundColor: 'transparent',
+    top: 20
   },
   buttonText: {
     fontSize: 20,
@@ -82,6 +83,9 @@ module.exports = StyleSheet.create({
     backgroundColor: 'transparent',
     marginTop: 15,
     alignSelf: 'center',
+  },
+  image: {
+    flex: 1,
   },
   footer: {
     position: 'absolute',

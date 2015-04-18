@@ -27,21 +27,24 @@ var UserInfoScreen = React.createClass({
 
   render() {
     return (
-      <View style={styles.background}>
-        <View style={styles.backgroundOverlay} />
+      <Image style={styles.image} source={{uri: 'https://farm5.staticflickr.com/4037/4436811900_bb971be9c5_b.jpg'}}>
 
-        <View style={styles.contentContainer}>
-          <Image source={{uri: this.state.user.getIn(['picture', 'data', 'url'])}}
-                 style={styles.profilePicture} />
-          <Text style={styles.name}>
-            {this.state.user.get('name')}
-          </Text>
+        <View style={styles.background}>
+          <View style={styles.backgroundOverlay} />
 
-          <TouchableOpacity onPress={UserActions.signOut}>
-            <Text>Sign out</Text>
-          </TouchableOpacity>
+          <View style={styles.contentContainer}>
+            <Image source={{uri: this.state.user.getIn(['picture', 'data', 'url'])}}
+                   style={styles.profilePicture} />
+            <Text style={styles.name}>
+              {this.state.user.get('name')}
+            </Text>
+
+            <TouchableOpacity onPress={UserActions.signOut}>
+              <Text>Sign out</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
+      </Image>
     )
   }
 });

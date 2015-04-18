@@ -1,1 +1,5 @@
-module.exports = {'FACEBOOK_SIGN_IN': 'FACEBOOK_SIGN_IN', 'SIGN_OUT': 'SIGN_OUT'}
+module.exports = {
+  'FACEBOOK_SIGN_IN': 'FACEBOOK_SIGN_IN',
+  'FACEBOOK_LIKES': 'FACEBOOK_LIKES', 
+  'SIGN_OUT': 'SIGN_OUT'
+}
