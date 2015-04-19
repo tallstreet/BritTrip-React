@@ -38,9 +38,21 @@ module.exports = StyleSheet.create({
     bottom: 0,
     right: 0,
   },
+  headingContainer: {
+    backgroundColor: 'transparent',
+    top: 50
+  },
   loginContainer: {
     backgroundColor: 'transparent',
-    top: 20
+    top: 200
+  },
+  headingText: {
+    fontSize: 50,
+    fontFamily: 'Gill Sans',
+    textAlign: 'center',
+    color: '#ffffff',
+    margin: 10,
+    opacity: 0.8,
   },
   buttonText: {
     fontSize: 20,

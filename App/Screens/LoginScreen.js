@@ -47,6 +47,13 @@ var LoginScreen = React.createClass({
       <Image style={styles.image} source={{uri: 'https://farm5.staticflickr.com/4037/4436811900_bb971be9c5_b.jpg'}}>
 
         <View style={styles.background}>
+
+          <View style={styles.headingContainer}>
+            <Text style={styles.headingText}>
+              BritTrip
+            </Text>
+          </View>
+
           <View style={styles.loginContainer}>
             <TouchableOpacity onPress={this.login}>
                 <Text style={styles.buttonText}>
