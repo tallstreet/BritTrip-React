@@ -17,7 +17,6 @@ var store = createStore({
   dispatcherIndex: dispatcher.register(function(payload) {
     action = payload.action;
 
-    console.log(payload);
     switch(action.actionType) {
       case PlacesConstants.GET_GEOLOCATION:
         navigator.geolocation.getCurrentPosition(
