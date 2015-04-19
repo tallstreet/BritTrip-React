@@ -6,17 +6,89 @@ var {
   View,
   Image,
   Navigator,
+  ScrollView,
   TouchableOpacity,
 } = React;
 
-var UserStoreSync = require('../Mixins/UserStoreSync');
+var StyleSheet= React.StyleSheet;
+
 var UserStore = require('../Stores/UserStore');
+var PlacesStore = require('../Stores/PlacesStore');
 var UserActions = require('../Actions/UserActions');
 var PlacesActions = require('../Actions/PlacesActions');
-var styles = require('./Styles');
+var Place = require('./Place');
+
+var styles = StyleSheet.create({
+  scrollView: {
+    backgroundColor: '#6A85B1',
+    height: 300,
+  },
+  horizontalScrollView: {
+    height: 120,
+  },
+  containerPage: {
+    height: 50,
+    width: 50,
+    backgroundColor: '#527FE4',
+    padding: 5,
+  },
+  text: {
+    fontSize: 20,
+    color: '#888888',
+    left: 80,
+    top: 20,
+    height: 40,
+  },
+  button: {
+    margin: 7,
+    padding: 5,
+    alignItems: 'center',
+    backgroundColor: '#eaeaea',
+    borderRadius: 3,
+  },
+  buttonContents: {
+    flexDirection: 'row',
+    width: 64,
+    height: 64,
+  },
+  img: {
+    width: 64,
+    height: 64,
+  }
+});
+
+var createPlaceRow = (place, i) => <Place key={i} place={place.toJS()} />;
+
 
 var PlacesScreen = React.createClass({
-  mixins: [UserStoreSync],
+  getInitialState() {
+    return {user: UserStore.getState(), places: PlacesStore.getState()}
+  },
+
+  updateUserFromStore() {
+    this.setState({user: UserStore.getState()});
+    if (this.afterUpdateUserFromStore) {
+      this.afterUpdateUserFromStore();
+    }
+  },
+
+  updatePlacesFromStore() {
+    this.setState({places: PlacesStore.getState()});
+  },
+
+
+  componentDidMount() {
+    this.updateUserFromStore();
+    UserStore.addChangeListener(this.updateUserFromStore);
+    PlacesStore.addChangeListener(this.updatePlacesFromStore);
+    PlacesActions.loadPlaces();
+  },
+
+  componentWillUnmount() {
+    UserStore.removeChangeListener(this.updateUserFromStore);
+    PlacesStore.removeChangeListener(this.updatePlacesFromStore);
+  },
+
 
   afterUpdateUserFromStore() {
     var user = UserStore.getState();
@@ -26,32 +98,14 @@ var PlacesScreen = React.createClass({
     }
   },
 
-  componentDidMount() {
-    this.updateUserFromStore();
-    UserStore.addChangeListener(this.updateUserFromStore);
-    PlacesActions.loadPlaces();
-  },
-
   render() {
     return (
-      <Image style={styles.image} source={{uri: 'https://farm5.staticflickr.com/4037/4436811900_bb971be9c5_b.jpg'}}>
-
-        <View style={styles.background}>
-          <View style={styles.backgroundOverlay} />
-
-          <View style={styles.contentContainer}>
-            <Image source={{uri: this.state.user.getIn(['picture', 'data', 'url'])}}
-                   style={styles.profilePicture} />
-            <Text style={styles.name}>
-              {this.state.user.get('name')}
-            </Text>
-
-            <TouchableOpacity onPress={UserActions.signOut}>
-              <Text>Sign out</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Image>
+      <ScrollView
+        horizontal={true}
+        contentInset={{top: 20}}
+        style={[styles.scrollView, styles.horizontalScrollView]}>
+        {this.state.places.map(createPlaceRow)}
+      </ScrollView>
     )
   }
 });
