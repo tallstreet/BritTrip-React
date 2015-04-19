@@ -12,9 +12,10 @@ var {
 var UserStoreSync = require('../Mixins/UserStoreSync');
 var UserStore = require('../Stores/UserStore');
 var UserActions = require('../Actions/UserActions');
+var PlacesActions = require('../Actions/PlacesActions');
 var styles = require('./Styles');
 
-var UserInfoScreen = React.createClass({
+var PlacesScreen = React.createClass({
   mixins: [UserStoreSync],
 
   afterUpdateUserFromStore() {
@@ -23,6 +24,12 @@ var UserInfoScreen = React.createClass({
     if (!user.get('email')) {
       this.props.navigator.replace({id: 'authenticate'});
     }
+  },
+
+  componentDidMount() {
+    this.updateUserFromStore();
+    UserStore.addChangeListener(this.updateUserFromStore);
+    PlacesActions.loadPlaces();
   },
 
   render() {
@@ -49,4 +56,4 @@ var UserInfoScreen = React.createClass({
   }
 });
 
-module.exports = UserInfoScreen;
+module.exports = PlacesScreen;

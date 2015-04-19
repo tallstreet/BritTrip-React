@@ -28,7 +28,7 @@ var LoginScreen = React.createClass({
     var user = UserStore.getState();
 
     if (user.get('email')) {
-      this.props.navigator.replace({id: 'user-info'});
+      this.props.navigator.replace({id: 'places'});
     }
   },
 

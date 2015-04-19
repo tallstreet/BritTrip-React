@@ -1,5 +1,6 @@
-module.exports = {
-  'FACEBOOK_SIGN_IN': 'FACEBOOK_SIGN_IN',
-  'FACEBOOK_LIKES': 'FACEBOOK_LIKES', 
-  'SIGN_OUT': 'SIGN_OUT'
-}
+var keyMirror = require('keymirror');
+
+module.exports =  keyMirror({
+  FACEBOOK_SIGN_IN: null,
+  SIGN_OUT: null
+});

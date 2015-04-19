@@ -1,1 +1,6 @@
-module.exports = {'PENDING': 'PENDING', 'ERROR': 'ERROR'};
+var keyMirror = require('keymirror');
+
+module.exports =  keyMirror({
+  PENDING: null,
+  ERROR: null
+});

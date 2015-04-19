@@ -8,6 +8,8 @@
   "dependencies": {
     "flux-util": "^0.1.1",
     "immutable": "^3.7.2",
+    "keymirror": "^0.1.1",
+    "lodash": "^3.7.0",
     "react-native": "^0.4.0"
   }
 }

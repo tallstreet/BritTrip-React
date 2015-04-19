@@ -9,8 +9,9 @@ var {
 } = React;
 
 var LocalStorage = require('./Stores/LocalStorage');
+var PlacesStore = require('./Stores/PlacesStore');
 var UserStore = require('./Stores/UserStore');
-var UserInfoScreen = require('./Screens/UserInfoScreen');
+var PlacesScreen = require('./Screens/PlacesScreen');
 var LoginScreen = require('./Screens/LoginScreen');
 
 var FacebookLogin = React.createClass({
@@ -26,8 +27,8 @@ var FacebookLogin = React.createClass({
     switch (route.id) {
       case 'authenticate':
         return <LoginScreen navigator={nav} />;
-      case 'user-info':
-        return <UserInfoScreen navigator={nav} />;
+      case 'places':
+        return <PlacesScreen navigator={nav} />;
       default:
         return <View />;
     }

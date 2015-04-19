@@ -3,6 +3,7 @@ var dispatcher = require('../AppDispatcher');
 var ApiConstants = require('../Constants/ApiConstants');
 var UserConstants = require('../Constants/UserConstants');
 var UserStore = require('../Stores/UserStore');
+var merge = require('merge');
 
 var React = require('react-native');
 var {
@@ -36,7 +37,7 @@ var store = createStore({
 
     switch(action.actionType) {
       case UserConstants.FACEBOOK_SIGN_IN:
-        AsyncStorage.setItem(USER_KEY, JSON.stringify(action.response), (error) => {
+        AsyncStorage.setItem(USER_KEY, JSON.stringify(merge(action.response, action.queryParams)), (error) => {
           if (error) {
             console.log('Error setting user in local storage! ' + error.message);
           } else {
